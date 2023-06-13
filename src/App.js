@@ -1,9 +1,10 @@
 import './App.css';
+import Search from './components/Search';
 
 function App() {
   return (
     <div className="App">
-      {/* create router and pass the router to router provider */}
+      <Search /> 
     </div>
   );
 }
