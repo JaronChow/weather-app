@@ -1,15 +1,16 @@
-import { cityWeather } from "../api/API";
+// import { useState } from "react";
+// import { cityWeather } from "../api/API";
 
-const CityWeather = () => {
-
-    
+const Search = () => {
+    // const [weather, setWeather] = useState([])
 
     return (
         <div>
-
+            <h1> WEATHER </h1>
+                <input placeholder="City"></input>
         </div>
     )
 
 }
 
-export default CityWeather
+export default Search;
