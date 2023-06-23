@@ -1,16 +1,10 @@
-
-const API_KEY = `01e45237087f82c738195e937bc138fc`;
+const API_KEY = `c072ebee80b5be5742303123edcbe14e`;
 const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?q=`
 
 
 
-export async function cityWeather(city, stateCode, countryCode){
-    const response = await fetch(`${BASE_URL}${city},${stateCode},${countryCode}&appid=${API_KEY}`, {
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(city, stateCode, countryCode)
+export async function fetchWeather(city){
+    const response = await fetch(`${BASE_URL}${city}&appid=${API_KEY}`, {
       })
       const data = await response.json()
       return data
