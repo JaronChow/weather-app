@@ -77,8 +77,8 @@ function Weather() {
       // </Container>
 
 
-<section className="vh-100%" style={{ backgroundColor: "#C1CFEA" }}>
-  <MDBContainer className="h-100 " >
+<section className="vh-100" style={{ backgroundColor: "#C1CFEA" }}>
+  <MDBContainer className="h-100%" >
       <div className="d-flex justify-content-center align-items-center">
         <form onSubmit={searchCity} className="d-flex mb-5 pt-4">
           <div className="input-group">
@@ -98,7 +98,7 @@ function Weather() {
       </div>
     <MDBRow
       className="justify-content-center align-items-center h-100"
-      style={{ color: "#282828" }}
+      style={{ color: "#282828" }} 
     >
       <MDBCol md="9" lg="7" xl="5">
         <MDBCard
