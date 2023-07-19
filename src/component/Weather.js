@@ -14,12 +14,19 @@ import {
 
 function Weather() {
   const [city, setCity] = useState('');
+  const [error, setError] = useState('');
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
 
   const getWeather = async () => {
     const response = await fetchWeather(city);
-    setWeather(response);
+    if(response.cod === '404'){
+      setError('City not found');
+      setWeather('')
+    } else {
+      setWeather(response);
+      setError(false);
+    }
     console.log('weather response', response);
   };
 
@@ -92,6 +99,11 @@ function Weather() {
           </div>
         </form>
       </div>
+
+      {error && 
+        <div className="alert alert-danger">{error}</div>
+      }
+
     <MDBRow
       className="justify-content-center align-items-center h-100"
       style={{ color: "#282828" }} 
@@ -121,7 +133,7 @@ function Weather() {
               </div>
               <div>
                 {weather && weather.name ? (<img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} className="img-fluid" alt="Weather Icon" />
-                ): (<p>enter location</p>)}
+                ): (<p>Enter Location</p>)}
               </div>
             </div>
           </MDBCardBody>
