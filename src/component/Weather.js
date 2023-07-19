@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { fetchWeather, fetchForecast } from '../api/API';
-
+import WeatherImage from './WeatherImage';
 import {
   MDBCard,
   MDBCardBody,
@@ -99,16 +99,15 @@ function Weather() {
           </div>
         </form>
       </div>
-
-      {error && 
-        <div className="alert alert-danger">{error}</div>
-      }
-
     <MDBRow
       className="justify-content-center align-items-center h-100"
       style={{ color: "#282828" }} 
     >
       <MDBCol md="9" lg="7" xl="5">
+        
+          {error && 
+            <div className="alert alert-danger" style={{ borderRadius: "25px" }} >{error}</div>
+          }
         <MDBCard
           className="mb-4 gradient-custom"
           style={{ borderRadius: "25px" }}
@@ -132,8 +131,7 @@ function Weather() {
               )}
               </div>
               <div>
-                {weather && weather.name ? (<img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} className="img-fluid" alt="Weather Icon" />
-                ): (<p>Enter Location</p>)}
+                {weather && weather.name ? (<WeatherImage weather={weather} />): (<p>Enter Location</p>)}
               </div>
             </div>
           </MDBCardBody>
