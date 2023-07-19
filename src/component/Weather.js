@@ -41,25 +41,17 @@ function Weather() {
     setCity('');
   };
 
+  const timestampToDayOfWeek = (timestamp) => {
+    const date = new Date(timestamp * 1000); // Convert timestamp to milliseconds
+  
+    const options = { weekday: 'long' }; // Specify the format for the day of the week
+    const dayOfWeek = new Intl.DateTimeFormat('en-US', options).format(date);
+  
+    return dayOfWeek;
+  };
+
   return (
    
-      // {weather && weather.name ? (
-      //     <>
-      //       <h1>City</h1>
-      //       <p>{weather.name}</p>
-      //       <h1>Current Weather</h1>
-      //       <p>{weather.weather[0].main}</p>
-      //       <h1>Wind Speed</h1>
-      //       <p>{weather.wind.speed}</p>
-      //       <h1>Current Temperature</h1>
-      //       <p>{weather.main.temp}</p>
-      //     </>
-      //   ) : (
-      //     <p>default: My Location</p>
-      //   )}
-      // </MDBContainer>
-      
-
       // <Container fluid style={{ width: "90%", padding: 100, }} 
       //   className="fs-4 mt-3 p-3 mb-1 bg-info text-dark bg-opacity-50 rounded-3">
       //   {forecast && forecast.list ? (
@@ -75,6 +67,10 @@ function Weather() {
       //     <p>Working on the forecast data right now</p>
       //   )}
       // </Container>
+
+      // {forecast && forecast.list ? (
+      //   <img src={`https://openweathermap.org/img/wn/${forecast.list[0].weather[0].icon}@2x.png`} width="80px" alt="Weather Icon" />
+      //   ) : null}
 
 
 <section className="vh-100" style={{ backgroundColor: "#C1CFEA" }}>
@@ -107,7 +103,6 @@ function Weather() {
         >
           <MDBCardBody className="p-4">
             <div className="d-flex justify-content-between pb-2">
-
               <div>
                 {weather && weather.name ? (
                 <>
@@ -119,100 +114,95 @@ function Weather() {
                   <p>Wind Speed</p>
                     <p>{weather.wind.speed}</p>
                 </>
+                
               ) : (
                 <p className="text-muted mb-0">Current Location</p>
               )}
               </div>
               <div>
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu3.webp"
-                  width="150px"
-                />
+                {weather && weather.name ? (<img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} className="img-fluid" alt="Weather Icon" />
+                ): (<p>enter location</p>)}
               </div>
-
             </div>
           </MDBCardBody>
         </MDBCard>
-
         <MDBCard className="mb-4" style={{ borderRadius: "25px" }}>
           <MDBCardBody className="p-4">
+            {forecast && forecast.city ? (
             <div className="d-flex justify-content-around text-center pb-3 pt-2">
               <div className="flex-column">
                 <p className="small">
-                  <strong>21°C</strong>
+                  <strong>{forecast.list[1].main.temp} F </strong>
+                </p>
+                <p className="small">
+                  {forecast.list[1].weather[0].main}
                 </p>
                 <MDBIcon
-                  fas
-                  icon="sun"
-                  size="2x"
-                  className="mb-3"
-                  style={{ color: "#ddd" }}
+
                 />
                 <p className="mb-0">
-                  <strong>Mon</strong>
+                  <strong>{timestampToDayOfWeek(forecast.list[1].dt)}</strong>
+                </p>
+
+              </div>
+              <div className="flex-column">
+                <p className="small">
+                  <strong>{forecast.list[9].main.temp} F </strong>
+                </p>
+                <p className="small">
+                  {forecast.list[9].weather[0].main}
+                </p>
+                <MDBIcon
+
+                />
+                <p className="mb-0">
+                  <strong>{timestampToDayOfWeek(forecast.list[9].dt)}</strong>
                 </p>
               </div>
               <div className="flex-column">
                 <p className="small">
-                  <strong>20°C</strong>
+                  <strong>{forecast.list[17].main.temp} F </strong>
+                </p>
+                <p className="small">
+                  {forecast.list[17].weather[0].main}
                 </p>
                 <MDBIcon
-                  fas
-                  icon="sun"
-                  size="2x"
-                  className="mb-3"
-                  style={{ color: "#ddd" }}
+
                 />
                 <p className="mb-0">
-                  <strong>Tue</strong>
+                  <strong>{timestampToDayOfWeek(forecast.list[17].dt)}</strong>
                 </p>
               </div>
               <div className="flex-column">
                 <p className="small">
-                  <strong>16°C</strong>
+                  <strong>{forecast.list[25].main.temp} F </strong>
+                </p>
+                <p className="small">
+                  {forecast.list[25].weather[0].main}
                 </p>
                 <MDBIcon
-                  fas
-                  icon="cloud"
-                  size="2x"
-                  className="mb-3"
-                  style={{ color: "#ddd" }}
+
                 />
                 <p className="mb-0">
-                  <strong>Wed</strong>
+                <strong>{timestampToDayOfWeek(forecast.list[25].dt)}</strong>
                 </p>
               </div>
               <div className="flex-column">
                 <p className="small">
-                  <strong>17°C</strong>
+                  <strong>{forecast.list[33].main.temp} F </strong>
                 </p>
-                <MDBIcon
-                  fas
-                  icon="cloud"
-                  size="2x"
-                  className="mb-3"
-                  style={{ color: "#ddd" }}
-                />
-                <p className="mb-0">
-                  <strong>Thu</strong>
-                </p>
-              </div>
-              <div className="flex-column">
                 <p className="small">
-                  <strong>18°C</strong>
+                  {forecast.list[33].weather[0].main}
                 </p>
                 <MDBIcon
-                  fas
-                  icon="cloud-showers-heavy"
-                  size="2x"
-                  className="mb-3"
-                  style={{ color: "#ddd" }}
+
                 />
                 <p className="mb-0">
-                  <strong>Fri</strong>
+                <strong>{timestampToDayOfWeek(forecast.list[33].dt)}</strong>
                 </p>
               </div>
             </div>
+            ) : (<p className="text-muted mb-0">Current Location</p>)}
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
